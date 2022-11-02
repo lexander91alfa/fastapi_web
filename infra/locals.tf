@@ -1,5 +1,4 @@
 locals {
-  abs_path    = abspath(path.root)
-  environment = (["POSTGRES_PASSWORD=alfa"])
-
+  abs_path = abspath(path.root)
+  pass     = "alfa2022"
 }

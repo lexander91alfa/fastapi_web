@@ -3,7 +3,7 @@ resource "docker_container" "postgres_container" {
   image   = docker_image.postgres.image_id
   restart = "always"
 
-  env = local.environment
+  env = (["POSTGRES_PASSWORD=${local.pass}"])
 
   ports {
     internal = "5432"
