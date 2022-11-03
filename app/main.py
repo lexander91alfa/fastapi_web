@@ -1,12 +1,21 @@
-from fastapi import FastAPI, Response
-from fastapi.staticfiles import StaticFiles
+from fastapi import FastAPI
+from fastapi.requests import Request
+from fastapi.templating import Jinja2Templates
 
-app = FastAPI(docs_url=None, redoc_url=None)
+app = FastAPI()
 
-app.mount("/static", StaticFiles(directory="static", html = True), name="static")
+templantes = Jinja2Templates(directory="templates")
 
 @app.get("/")
-async def main():
-    with open("./static/index.html") as fh:
-        data = fh.read()
-    return Response(content=data, media_type="text/html", status_code=200)
+async def index(request: Request, usuario: str = "Alexandre Santos"):
+    context = {
+        "request": request,
+        "usuario": usuario
+    }
+    
+    return templantes.TemplateResponse('index.html', context=context)
+
+@app.get("/servicos")
+async def servicos(request: Request):
+    context = {"request": request}
+    return templantes.TemplateResponse('servicos.html', context=context)
