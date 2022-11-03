@@ -28,3 +28,7 @@ Instalação da seguintes ferramentas:
 > pip install -r requirements.txt
 > python script_inicial_sql.py
 > ~~~
+
+## Fast api
+
+[FastAPI](https://fastapi.tiangolo.com/)
